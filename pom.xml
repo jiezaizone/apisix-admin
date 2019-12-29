@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.isuwang</groupId>
+    <artifactId>dockerfiles</artifactId>
+    <name>apisix-admin</name>
+    <packaging>pom</packaging>
+    <version>1.0</version>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
+
+    <build>
+        <plugins>
+<plugin>
+      <groupId>com.spotify</groupId>
+      <artifactId>docker-maven-plugin</artifactId>
+      <version>0.4.10</version>
+      <configuration>
+        <imageName>docker.oa.isuwang.com:5000/system/apisix-admin:master</imageName>
+        <dockerDirectory>${basedir}</dockerDirectory>
+      </configuration>
+      <executions>
+       <execution>
+        <id>build-image</id>
+        <phase>package</phase>
+        <goals>
+         <goal>build</goal>
+        </goals>
+      </execution>
+     </executions>
+    </plugin>
+        </plugins>
+    </build>
+</project>
