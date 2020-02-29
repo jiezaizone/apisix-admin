@@ -1,5 +1,5 @@
 FROM alpine:latest AS build-stage
-MAINTAINER jiezai
+MAINTAINER jiezaizone
 # create destination directory
 RUN mkdir -p /usr/src/app/
 WORKDIR /usr/src/app
@@ -9,7 +9,7 @@ RUN git clone https://github.com/apache/incubator-apisix-dashboard.git
 WORKDIR /usr/src/app/incubator-apisix-dashboard
 RUN yarn install && yarn run build:prod
 
-FROM docker.oa.isuwang.com:5000/system/nginx:1.10.1 as production-stage
+FROM nginx as production-stage
 MAINTAINER jiezai
 RUN mkdir /app
 COPY --from=build-stage /usr/src/app/incubator-apisix-dashboard/dist /app
